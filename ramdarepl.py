@@ -12,11 +12,16 @@ class RamdaReplCommand(sublime_plugin.TextCommand):
 
     settings = sublime.load_settings(SETTINGS_FILE)
     node_modules_path = settings.get("node_modules_path")
+    use_ramda_fantasy = settings.get("ramda-fantasy")
     contents = self.view.substr(sublime.Region(0, self.view.size()))
+    js =  (
+      "\"const R = require('ramda');\n"
+      "const RF = " + ("require('ramda-fantasy')" if use_ramda_fantasy else "{}") + ";\n"
+      "with(" + "R.merge(R,RF)" + ") {" + contents + "}\""
+    )
     self.show_repl_panel()
     output = subprocess.getoutput("export NODE_PATH=" + node_modules_path +
-      " && node -p \"" +
-      "with(" + "require('ramda')" + ") {" + contents + "}\"")
+      " && node -p " + js)
     self.append_data(output)
 
   def clear_panel_view(self):
