@@ -1,15 +1,22 @@
 
 import sublime, sublime_plugin
 import subprocess
-# from urllib.request import urlopen
 import re
+
+PLUGIN_NAME = "ramdarepl"
+SETTINGS_FILE = '{0}.sublime-settings'.format(PLUGIN_NAME)
 
 class RamdaReplCommand(sublime_plugin.TextCommand):
   def run(self, edit, **args):
     self.edit = edit
+
+    settings = sublime.load_settings(SETTINGS_FILE)
+    node_modules_path = settings.get("node_modules_path")
     contents = self.view.substr(sublime.Region(0, self.view.size()))
     self.show_repl_panel()
-    output = subprocess.getoutput("export NODE_PATH=/Users/bijoythomas/Zulu/SchedulingMVP/node_modules && node -p \"with(require('ramda')) {" + contents + "}\"")
+    output = subprocess.getoutput("export NODE_PATH=" + node_modules_path +
+      " && node -p \"" +
+      "with(" + "require('ramda')" + ") {" + contents + "}\"")
     self.append_data(output)
 
   def clear_panel_view(self):
