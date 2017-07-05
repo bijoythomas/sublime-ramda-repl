@@ -17,7 +17,7 @@ class RamdaReplCommand(sublime_plugin.TextCommand):
     js =  (
       "\"const R = require('ramda');\n"
       "const RF = " + ("require('ramda-fantasy')" if use_ramda_fantasy else "{}") + ";\n"
-      "with(" + "R.merge(R,RF)" + ") {" + contents + "}\""
+      "with(" + "R.merge(R,RF)" + ") {" + contents.replace('"', "'") + "}\""
     )
     self.show_repl_panel()
     output = subprocess.getoutput("export NODE_PATH=" + node_modules_path +
