@@ -1,0 +1,5 @@
+[
+  {
+    "keys": ["ctrl+shift+r"], "command": "ramda_repl"
+  }
+]
