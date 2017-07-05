@@ -4,7 +4,7 @@ Try out Ramda functions from Sublime itself
 
 Requirements
 ============
-None. Well, other than Ramda :-)
+None. Well, other than Ramda and optionally Ramda Fantasy if you want to try it out :-)
 
 Installation
 ------------
@@ -62,3 +62,4 @@ optionally include ramda-fantasy
 
 Screenshot
 ---------
+![Results](https://github.com/bijoythomas/sublime-ramda-repl/blob/master/screenshot.png)
