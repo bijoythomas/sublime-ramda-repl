@@ -1,0 +1,7 @@
+{
+  // Absolutle path to the dir containing the ramda lib
+  // Examples:
+  //    /Users/me/project/node_modules
+  "node_modules_path": "/Users/bijoythomas/Zulu/SchedulingMVP/node_modules",
+  "ramda-fantasy" : true
+}
